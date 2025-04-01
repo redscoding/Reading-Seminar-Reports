@@ -1,0 +1,37 @@
+From YOLOv4, YOLOv7, YOLOv9
+廖弘源特聘研究員
+----------------------------------------------------------
+scientist vs engineer 差異在否使用現有的方法解決問題
+-應用在智慧城市交通解決
+-物件偵測幾乎是所有領域相關研究的 " 第一步 " 
+2010前, 電腦視覺對電腦很難，對人類很簡單
+常見的作法:
+  edge detection，希望形成封閉曲線，但是仍然沒有通解
+2010後
+常見作法:
+  端到端深度學習訓練 " 視覺字典 visual based dictionary "
+  有字典大部分都可以解決
+  利用" 矩陣分解 " 提升運行速度(可以找到潛在的知識)
+  YOLOv9 可能太多層導致影像模糊(題度消失) 用programmable gradient information 改善 Ref:https://blog.csdn.net/weixin_49824703/article/details/138086870
+
+-設計物件偵測系統考量之基本議題:
+  1. network architecture
+  2. feature intergration method
+  3. detection method
+  4. loss function
+  5. label assignment method
+  6. training method
+layer-level 失敗 改用 stage-level
+每個stage都有gradient floww (每個stage可能處理不同大小的物件影像，最後組合成完整的物件辨識)
+-設計物件偵測系統需面對的基本問題:
+  1. 要以現存的模型為基礎或另創新模型
+  2. model scaling
+    受哪些因素影響:
+      .possible scaling factors include:
+          resolution (size of input img)
+          depth (no. of layers)
+          width(no. of channels)
+          stage (no. of feature pyramids)
+          ex: 像是梨泰院事件，如果人流多了通道變窄但是沒有變長，就會出問題。
+  3. inference speed at edge
+  4. data loss during feedforward
